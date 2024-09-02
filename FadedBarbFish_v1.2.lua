@@ -1,5 +1,5 @@
 -- 02.09.24 v1.2 by xyFaded
--- Requirements: Level 20+ fishing, feathers in inventory or bank, Barbarian Village fishing spot
+-- Requirements: Level 20+ fishing, feathers in inventory, Barbarian Village fishing spot
 
 local API = require("api")
 
