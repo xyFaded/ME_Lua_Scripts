@@ -1,10 +1,10 @@
--- 02.09.24 v1.2 by xyFaded
+-- 02.09.24 v1.3 by xyFaded
 -- Requirements: Level 20+ fishing, feathers in inventory, Barbarian Village fishing spot
 
 local API = require("api")
 
-MAX_IDLE_TIME_MINUTES = 5
---startTime, afk = os.time(), os.time()
+local MAX_IDLE_TIME_MINUTES = 5
+API.SetMaxIdleTime(MAX_IDLE_TIME_MINUTES)
 
 local ID = {
     328
@@ -14,17 +14,6 @@ local ITEMS = {
     331,
     335
 }
-
--- Thanks to Higgins for Anti AFK
-local function idleCheck()
-    local timeDiff = os.difftime(os.time(), afk)
-    local randomTime = math.random((MAX_IDLE_TIME_MINUTES * 60) * 0.6, (MAX_IDLE_TIME_MINUTES * 60) * 0.9)
-
-    if timeDiff > randomTime then
-        API.PIdle2()
-        afk = os.time()
-    end
-end
 
 local function countInv()
     for _, item in ipairs(ITEMS) do
@@ -62,13 +51,7 @@ local function barbFish()
     API.RandomSleep2(2000, 1000, 2000)
 end
 
-while API.Read_LoopyLoop() do
-    --if type(API.SetMaxIdleTime) == "function" then
-    --    API.SetMaxIdleTime(MAX_IDLE_TIME_MINUTES)
-    --else
-    --    idleCheck()
-    --end
-    
+while API.Read_LoopyLoop() do  
     barbFish()
     countInv()
 end
